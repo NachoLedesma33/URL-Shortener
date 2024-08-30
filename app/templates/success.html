@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortened</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #2d2f34; /* Dark background color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        padding: 20px;
+        color: #f0f0f0; /* Light text color */
+      }
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background-color: #393c42; /* Slightly lighter background */
+        padding: 3rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Softer shadow */
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #f0f0f0;
+        margin-bottom: 2rem;
+      }
+      .short-url-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .short-url {
+        font-size: 1.125rem;
+        color: #333;
+        padding: 0.75rem;
+        border: 1px solid #555;
+        border-radius: 6px;
+        background-color: #f7fafc;
+        flex-grow: 1;
+        word-break: break-all;
+        text-align: left;
+      }
+      .copy-button {
+        background-color: #4a90e2; /* Primary color */
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 1.125rem;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
+      .copy-button:hover {
+        background-color: #357ab8; /* Darker shade on hover */
+      }
+      .button {
+        display: inline-block;
+        margin-top: 1rem;
+        background-color: #4a90e2;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 1.125rem;
+        text-decoration: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: background-color 0.3s ease;
+      }
+      .button:hover {
+        background-color: #357ab8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Your URL Has Been Shortened!</h1>
+      <div class="short-url-container">
+        <input
+          type="text"
+          id="shortUrl"
+          class="short-url"
+          value="{{ url_for('redirect_to_url', short_url=short_url, _external=True) }}"
+          readonly
+        />
+        <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+      </div>
+      <a href="{{ url_for('index') }}" class="button">Shorten Another URL</a>
+    </div>
+
+    <script>
+      function copyToClipboard() {
+        var copyText = document.getElementById("shortUrl");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+        alert("Copied the URL: " + copyText.value);
+      }
+    </script>
+  </body>
+</html>

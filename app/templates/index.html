@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #2d2f34; /* Dark background color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        padding: 20px;
+        color: #f0f0f0; /* Light text color */
+      }
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background-color: #393c42; /* Slightly lighter background */
+        padding: 3rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Softer shadow */
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #f0f0f0;
+        margin-bottom: 2rem;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      label {
+        font-size: 1.125rem;
+        color: #f0f0f0;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .input-url {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.125rem;
+        color: #333;
+        background-color: #f7fafc; /* Light background for input */
+        border: 1px solid #555; /* Dark border */
+        border-radius: 6px;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+      }
+      button {
+        background-color: #4a90e2; /* Primary color */
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 1.125rem;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #357ab8; /* Darker shade on hover */
+      }
+      .button {
+        display: inline-block;
+        margin-top: 1rem;
+        background-color: #4a90e2;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 1.125rem;
+        text-decoration: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: background-color 0.3s ease;
+      }
+      .button:hover {
+        background-color: #357ab8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Shorten Your URL</h1>
+      <form action="{{ url_for('index') }}" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.original_url.label }}
+          <input
+            type="url"
+            id="originalUrl"
+            class="input-url"
+            name="original_url"
+            placeholder="Enter your URL here"
+          />
+        </div>
+        <button type="submit">Shorten</button>
+      </form>
+    </div>
+  </body>
+</html>
